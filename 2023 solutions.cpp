@@ -190,8 +190,28 @@ char ** d2(char str[]) // needs testing
     return words;
 }
 
+/* Q u e s t i o n  3  */
+
+double Bisection(double a , double b)
+{
+    double c = a+b / 2;
+    while( a - b < 0.001 && a - b > -0.001)
+    {
+        if(f(c) > 0)
+        {
+            b = c;
+            
+        }
+        else
+        {
+            a = c;
+        }
+        c = a+b / 2;
+    }
+    return c;
+}
+
 int main()
 {
-// all functions needs to be tested
-  return 0;
+    return 0;
 }
