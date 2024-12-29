@@ -148,7 +148,7 @@ void c2(char str[])
     return;
 }
 
-char ** d2(char str[]) // needs testing
+char** d2(char str[]) // needs testing
 {
     int nword = 0;
     int backwall = 0;
