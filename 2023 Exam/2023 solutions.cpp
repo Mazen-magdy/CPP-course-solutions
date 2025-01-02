@@ -41,7 +41,7 @@ int* c1( int a[][20])
     return m;
 }
 
-// letter d can't solve it because it's not clear what the question is asking for
+// letter d missed 
 
 int e1(int a[][20])
 {
