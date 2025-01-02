@@ -2,6 +2,42 @@
 using namespace std;
 
 /* Q u e s t i o n  1  */
+int a1( int a[][20]);
+
+int b1(int a[][20]);
+
+int* c1( int a[][20]);
+
+// letter d can't solve it because it's not clear what the question is asking for
+
+int e1(int a[][20]);
+
+int f1(int a[][20]);
+
+int* g1(int a[][20]);
+
+/* Q u e s t i o n  2  */
+
+int a2( char str[]);
+
+int b2();
+
+void c2(char str[]);
+
+char** d2(char str[]); // needs testing
+
+/* Q u e s t i o n  3  */
+
+    // question 3 is not solved
+
+/* Q u e s t i o n  4  */
+double Bisection(double a , double b);
+
+int main()
+{
+    return 0;
+}
+
 int a1( int a[][20])
 {
     int sum = 0;
@@ -13,7 +49,6 @@ int a1( int a[][20])
         }
     return sum;
 }
-
 int b1(int a[][20])
 {
     int sume = 0;
@@ -30,7 +65,6 @@ int b1(int a[][20])
 
     return sume / sumi;
 }
-
 int* c1( int a[][20])
 {
     int * m = &a[0][0]; // m is the maximum value
@@ -40,9 +74,6 @@ int* c1( int a[][20])
                 m = &a[i][j];
     return m;
 }
-
-// letter d can't solve it because it's not clear what the question is asking for
-
 int e1(int a[][20])
 {
     int sum = 0;
@@ -50,7 +81,6 @@ int e1(int a[][20])
             sum += a[i][i];
     return sum;
 }
-
 int f1(int a[][20])
 {
     int sum = 0;
@@ -64,7 +94,6 @@ int f1(int a[][20])
         }
     return msumi;
 }
-
 int* g1(int a[][20])
 {
     int sum = 0;
@@ -87,7 +116,6 @@ int* g1(int a[][20])
         A[j] = a[msumi][j];
     return A;
 }
-
 /* Q u e s t i o n  2  */
 
 int a2( char str[])
@@ -106,7 +134,6 @@ int a2( char str[])
     }
     return count;
 }
-
 int b2()
 {
     char current, previous;
@@ -122,7 +149,6 @@ int b2()
     }
     cout << count;
 }
-
 void c2(char str[])
 {
     char str2[100];
@@ -147,7 +173,6 @@ void c2(char str[])
     }
     return;
 }
-
 char** d2(char str[]) // needs testing
 {
     int nword = 0;
@@ -189,8 +214,7 @@ char** d2(char str[]) // needs testing
 
     return words;
 }
-
-/* Q u e s t i o n  3  */
+/* Q u e s t i o n  4  */
 
 double Bisection(double a , double b)
 {
@@ -209,9 +233,4 @@ double Bisection(double a , double b)
         c = a+b / 2;
     }
     return c;
-}
-
-int main()
-{
-    return 0;
 }
