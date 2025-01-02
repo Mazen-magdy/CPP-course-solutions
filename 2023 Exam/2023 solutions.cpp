@@ -35,6 +35,7 @@ double Bisection(double a , double b);
 
 int main()
 {
+    // all functions need tests 
     return 0;
 }
 
