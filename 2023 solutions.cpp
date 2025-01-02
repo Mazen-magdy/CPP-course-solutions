@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-
+//test
 /* Q u e s t i o n  1  */
 int a1( int a[][20])
 {
