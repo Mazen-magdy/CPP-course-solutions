@@ -1,9 +1,9 @@
 #include <iostream>
-
+#include <string.h>
 using namespace std;
 /* Q U E S T I O N  2 */
 int a2(int a[], int n);
-// b2 not solved
+int b2(int a[], int n, int m);
 int c2(int ** a, int n);
 
 /* Q U E S T I O N 3  a*/
@@ -12,7 +12,7 @@ int getindex1(char x[], char y[]);
 
 /* Q U E S T I O N 3  b*/
 
-int getindex(char x[],char y[])
+int getindex(char x[],char y[]);
 /* Q U E S T I O N  4  a*/
 void student3(int a[],int n,int& s1,int& s2,int& s3);
 /* Q U E S T I O N  4  b*/
@@ -26,6 +26,15 @@ int main()
     //----- T E S T  F O R  Q U E S T I O N  2  a -----//
     //int a[] = {1, 2, 3, 4, 5};
     //cout << a2(a, 5);
+
+
+
+    //----- T E S T  F O R  Q U E S T I O N  2  b -----//
+    
+    
+    // int a[] = {6, 2, 3, 4, 5};
+    // cout << b2(a, 5, 2);
+
 
 
 
@@ -85,7 +94,19 @@ int a2(int a[], int n)
      }
     return -1;
 }
-
+int b2(int a[], int n, int m)
+{
+    int *c = new int[n];  // an array to get if the number is repeated or not
+    for(int i = 0; i < n; i++)     // initialize the array with m - 1 to indicate that the number is not repeated
+        c[i] = m - 1;
+    for(int i = 0; i < n; i++)
+    {
+        if(c[a[i] - m] == m - 1) // if the number is not repeated then assign the number to the index of the number - m
+            c[a[i] - m] = a[i];
+        else return a[i]; // if the number is repeated then return the number
+    }
+    return -1; // if there is no repeated number
+}
 int c2(int ** a, int n)
 {
     int i, j, k, z; // i for size of the square, j for the column, k for the row, z for the starting row
