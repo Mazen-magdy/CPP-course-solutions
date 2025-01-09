@@ -3,7 +3,7 @@
 using namespace std;
 /* Q U E S T I O N  2 */
 int a2(int a[], int n);
-
+// b2 not solved
 int c2(int ** a, int n);
 
 /* Q U E S T I O N 3  a*/
