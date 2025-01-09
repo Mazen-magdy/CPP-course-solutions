@@ -6,6 +6,9 @@ int a2(int a[], int n);
 int b2(int a[], int n, int m);
 int c2(int ** a, int n);
 
+//////////////////////////////////////////////////////////
+/* Q U E S T I O N 3 */
+
 /* Q U E S T I O N 3  a*/
 
 int getindex1(char x[], char y[]);
@@ -13,12 +16,15 @@ int getindex1(char x[], char y[]);
 /* Q U E S T I O N 3  b*/
 
 int getindex(char x[],char y[]);
+//////////////////////////////////////////////////////////
+/* Q U E S T I O N  4 */
+
 /* Q U E S T I O N  4  a*/
 void student3(int a[],int n,int& s1,int& s2,int& s3);
 /* Q U E S T I O N  4  b*/
 void swap(int& a, int& b);
 void sort(int a[], int n);
-// 4b didn't solved
+void student3b(int a[],int n,int& s1,int& s2,int& s3);
 
 int main()
 {
@@ -53,23 +59,31 @@ int main()
     //----- T E S T  F O R  Q U E S T I O N  3  a -----//
     // cout << getindex1("hello", "lo") << endl;
 
+    
+    
     //----- T E S T  F O R  Q U E S T I O N  3  b -----//
 
     // cout << getindex("hello", "lo") << endl;
 
+
+
     //----- T E S T  F O R  Q U E S T I O N  4  a -----//
+    
     // int a[10] = {1,4,25 ,8,13,20,3,6,7,9};
     // int s1 , s2 ,s3 ;
     // student3(a,10,s1,s2,s3);
     // cout << s1 << ' ' << s2 << ' ' << s3 << endl;
 
 
+    
+    
     //----- T E S T  F O R  Q U E S T I O N  4  b -----//
-    // int a[10] = {1,4,25 ,8,13,20,3,6,7,9};  // 1 3 4 6 7 8 9 13 20 25
-    // int b[3];
-    // b4(a, 10, b);
-    // cout << b[0] << ' ' << b[1] << ' ' << b[2] << endl;
-    return 0;
+    
+    // int a[10] = {1,2,3,4,5,6,7,8,9};  // 1 3 4 6 7 8 9 13 20 25
+    // int s1 , s2 ,s3 ;
+    // student3b(a,10,s1,s2,s3);
+    // cout <<"result is "<< s1 << ' ' << s2 << ' ' << s3 << endl;
+    // return 0;
 
 }
 
@@ -237,4 +251,28 @@ void sort(int a[], int n)
     }
 }
 
-// 4b didn't solved 
+void student3b(int a[],int n,int& s1,int& s2,int& s3)
+{
+    sort(a, n);
+    int t[3];
+    int min = t[2] - t[0];
+    for(int i = n - 1;i >= 2; i--)  // loop for the last 3 elements
+    {
+        
+        for(int j = 0; j < i-2; j++) // loop to test all the elements before the last 3 elements with the least of the last 3 elements
+            {
+                t[0] = a[i-2] + a[j];
+                t[1] = a[i-1];
+                t[2] = a[i];
+                sort(t, 3);
+                if( t[2] - t[0] < min)  // if the difference between the last and the first element is less than the minimum then assign the elements to the s1, s2, s3
+                {
+                    min = t[2] - t[0];
+                    s1 = t[0];
+                    s2 = t[1];
+                    s3 = t[2];
+                }
+            }
+    }
+    return;
+}
