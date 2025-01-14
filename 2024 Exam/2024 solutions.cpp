@@ -162,6 +162,7 @@ int c2(int ** a, int n)
 }
 
 /* Q U E S T I O N 3  a*/
+// This solution is considering y within x but the question requires the opposit (x within y)
 int getindex1(char x[], char y[])
 {
 	int index = -1;
@@ -186,7 +187,7 @@ int getindex1(char x[], char y[])
 }
 
 /* Q U E S T I O N 3  b*/
-
+// This solution is considering y within x but the question requires the opposit (x within y)
 int getindex(char x[],char y[])
 {
 	int index = -1, counter = 0;
