@@ -86,12 +86,16 @@ int f1(int a[][20])
 {
     int sum = 0;
     int msumi; // stand for maximum sum index
+    int msum = 0;
     for(int j = 0; j <20; j++ )
         {
             for(int i = 0; i <20; i++ )
                 sum += a[i][j];
-            if(sum > msumi)
+            if(sum > msum)
+            {
                 msumi = j;
+                msum = sum;
+            }
         }
     return msumi;
 }
