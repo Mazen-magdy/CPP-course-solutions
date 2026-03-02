@@ -1,13 +1,13 @@
-/* THIS SOLUTION FAILS AT TEST 610 
-    Input "bbbbb"
-    Output 2
-    Expected 1
+/* 
+ ACCEPTED
 */
-
+#include <iostream>
+#include <string>
+using namespace std;
 int lengthOfLongestSubstring(string s) {
     string buffer =  "";
     string biggest = "";
-    for(int i= 0;i<s.length()+1;i++){
+    for(int i= 0;i<s.length();i++){
         char ch = s[i];
         int initial = i;
         for(int j=0;j<buffer.length();j++)
@@ -16,7 +16,7 @@ int lengthOfLongestSubstring(string s) {
                 //problem
                 // if(buffer.length()> biggest.length())
                 //     biggest = buffer;
-                i =i - buffer.length()+1;
+                i =i - buffer.length();
                 buffer = "";
                 break;
 
@@ -26,5 +26,15 @@ int lengthOfLongestSubstring(string s) {
         if(buffer.length()> biggest.length())
                     biggest = buffer;
     }
-    return biggest.length();
+    int length =  biggest.length() ;
+    return length;
+}
+
+int main()
+{
+    string s = "dvdf";
+    string test = "b";
+    cout<< test.length() << endl;
+    cout<<lengthOfLongestSubstring(s);
+    return 0;
 }
