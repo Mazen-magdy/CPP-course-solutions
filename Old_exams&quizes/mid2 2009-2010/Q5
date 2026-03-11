@@ -1,0 +1,53 @@
+//Q5
+#include <iostream>
+
+using namespace std;
+
+class Apt{
+    int num_of_minutes;
+    public:
+    Apt(int hours, int minutes){     //assume hours:24 not am, pm (A constructor that takes the hour and the minutes of an appointmen *only*)
+        num_of_minutes=hours*60+minutes;
+    }
+    void dispaly (){
+        int h=num_of_minutes/60;
+        int m= num_of_minutes%60;
+        cout<<"The appointment at : "<<h <<" : "<<m<<endl;
+    }
+    void display_num_min(){        //not required just for testing
+         cout<<"Number of minutes since he first minutes of day: "<<num_of_minutes<<endl;
+    }
+    int delay(int D){
+        int after_delay=num_of_minutes+D; //number of minutes after delay to keep original number of minutes
+        return after_delay;
+    }
+    bool Before(Apt t){
+        if(t.num_of_minutes<num_of_minutes)
+            return true;
+        else
+            return false;
+    }
+};
+int main()
+{
+   int hours; int minutes;
+   cout<<"Enter the appointment in hours and minutes: ";
+   cin>>hours>>minutes;
+   Apt t1(hours, minutes);
+   int D;
+   t1.dispaly();
+   t1.display_num_min();
+   cout<<"Enter delay period of minutes: ";
+   cin>>D;
+   int Apt_delayed=t1.delay(D);
+   cout<<"Apt after delay: "<<Apt_delayed<<endl;
+    int h,m;
+   cout<<"Entet the appointment that you want to compare: ";
+   cin>>h>>m;
+   Apt t2(h,m);
+   bool before =t1.Before(t2);
+   cout<<"Is it before or not ? ";
+   cout<<before<<endl;
+    return 0;
+}
+
