@@ -1,0 +1,25 @@
+//Quiz 5 2025 voltage of capacitor
+
+#include <iostream>
+
+using namespace std;
+
+float* Vc(float Vs , float RC){
+    float static arr[10];
+    arr[0]=0;
+    for(int i=1; i<10; i++){
+        arr[i]=((Vs-arr[i-1])*0.001/RC)+arr[i-1];
+    }
+    return arr;
+}
+int main()
+{
+   float Vs ; float RC;
+   cout<<"Enter Vs value and RC value : ";
+   cin>>Vs>>RC;
+   float* arr= Vc(Vs,RC);
+   for(int i=0 ; i<10 ; i++){
+        cout<<arr[i]<<" , ";
+   }
+    return 0;
+}
