@@ -1,0 +1,46 @@
+----------- This is much faster and more memory effiecnt than yday's sol --------------
+
+main idea:
+- at the top and bottom row of the zigazg structure  ex     P     I    N   = PAYPALISHIRING
+                                                            A   L S  I G
+                                                            Y A   H R
+                                                            P     I
+
+starting from index 0, the top row charcters follow the pattern of index += 2*(numRows -1) /* the given in question*/
+if rows = 4 like this question, the pattern would be 2(4-1) = 6 then first row would be
+s[i=0] =p , s[i=6] = I, s[i=12] = N
+last row follow the same pattern but we start from index = numRows-1 so it would be i = 3;
+so it looks like s[i=3] = P, s[i=(3+6 = 9] = I
+
+in the middle however it follows a different approach
+each row after the first and before the last follow this strucsture:
+index = the available index(in the second row that would be i =1 , third row would be i = 2) and so on
+this index is incremented as follows: in the first row we start with index available = 1 and go like this
+s[i=1] = 'A', then i += (pattern - M -1) so s[i] = 'L', then i += M+1 so s[i]= 'S' then i += (pattern-M-1) so s[i] = 'I'
+then i += M+1 , s[i] ='G'
+so in essence at each time we increment by pattern-m-1 then increment by m+1 and then pattern-m-1 and so on
+until we reach end of string
+
+*****what is pattern and M:
+pattern is simply 2*(numRows -1 ) that we got above
+M is a variable that starts with value 1 at the second row, and at third = 3 and at 4th = 5 and follows this pattern
+
+so we structure the code as
+get first line with pattern only
+get middle line with pattern and m
+get last line with pattern only
+
+
+to understaand M 
+                                                            P     I    N   = PAYPALISHIRING
+                                                            A   L S  I G
+                                                            Y A   H R
+                                                            P     I
+
+
+
+in second line see that from A to L we leave a space but from L to S we dont
+but third line we see that from Y to A we dont leave a space but we leave one from A to H
+
+M models this behaviour
+
