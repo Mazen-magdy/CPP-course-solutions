@@ -1,0 +1,19 @@
+---------O[n]---------
+
+my intution:
+
+
+- assume we are already at the middle of the array, given an index i, we can either add arr[i] to the current subarray
+  or create our own new subarray starting from arr[i]
+
+- to determine that we simply ask which is bigger, arr[i] on its own or arr[i] + prev subarray
+- if arr[i] is bigger theres no need to append it to the prev subarray cus that would make the total sum lower than if
+  we were to use arr[i] on its own, so make a new subarray that starts with arr[i]
+  otherwise we add arr[i] to the prev subarray
+
+
+ex: 1 2 3 4 5 -3 -2 10
+when we reach -3 we ask: is it bigger to have -3 on its own or do we add it to our previous subarray
+the answer would be to add it to prev subarray.
+
+of course we keep track with the largest subarray we met yet by comparing each prev_subarray with our current max sub array
