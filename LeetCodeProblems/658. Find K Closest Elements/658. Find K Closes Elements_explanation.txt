@@ -1,0 +1,42 @@
+------O(n)---------
+
+main idea:
+- if we have arr be our array, x be our target and k be the number of closest numbers we need
+  having an array that captures the absloute value of arr[i] - x makes the question easier
+  ex : arr = [-3 , -2, -1, 0, 1, 2, 3, 4, 5, 6, 7] k =4, x =3
+   abs_arr = [ 6,   5,  4, 3, 2, 1, 0, 1, 2, 3, 4] 
+   we notice that our target elements (1,2,3,4) form the sub array of 4 with the smallest sum
+   that is true for every x and every k aslong as the array is sorted ( if not, i have no idea how to solve it lowkey)
+   so we basically keep track of the smallest subarray of 4 in terms of sum 
+
+ ex : arr = [1,1,2,3,4,5], k = 4, x = -1
+      abs = [2,2,3,4,5,6]
+
+-we will keep our soulution in a vector called target here , a variable called sum = 0:
+ starting from i = 0, we check : if the target.size()!= k, we simply add the abs_arr[i] to sum and target.push_back(arr[i])
+ meaning target now holds the first value of arr (not abs, we only abs to check for smallest sum)
+ same for i = 1, i = 2, i = 3,
+ once i == k at this example its (4) we check  if ( sum - diff[i - k ] + diff[i] < sum  ) meaning:
+    --- is the current sum smaller, or if the remove the very first element I added in sum and add the current element?
+        if yes then we simply remove the very first element, add the current element to sum,
+        also remove the very first arr element from target and add the current arr element to it
+
+
+
+intution to understand how we keep track of the smallest sub array of k:
+
+imagine k = 3 and we have nums = [1 , 2, 3 , -4 , 6, -10, 200]
+
+here we use () to indicate our current sub array
+basically we keep filling () with elemenents until its size = k 
+ex : i = 0 : [(3 ,) 2, 1 , 0 , 1, 2, 3] 
+ex : i = 1 : [(3 , 2,) 1 , 0 , 1, 2, 3] 
+ex : i = 2 : [(3 , 2, 1 ,) 0 , 1, 2, 3] 
+once we are here we check, do i keep the first element or is removing it and adding the current element makes me smaller
+here i should remove it so it would be
+ex : i = 3 : [3 , (2, 1 , 0) , 1, 2, 3]
+same with i = 4 :[ 3 , 2 ,( 1, 0, 1,) 1, 2, 3]
+
+ps : a more sophisticated apporach is need if they were not sorted
+
+
