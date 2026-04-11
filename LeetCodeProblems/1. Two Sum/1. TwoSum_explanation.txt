@@ -1,0 +1,32 @@
+----------O[n]---------
+
+intution:
+- we simply save NEW element we we need
+- but before we save it, we check, does target - our current element exists? if yes then we have found our 2 pair
+  if not then we save that element
+
+- ex: say our arr is [2 ,7 ,1 -1] and target is 9
+  at i = 0: we ask does 9 - nums[i] "7" exists? since its the first element then its no, so we save 2
+  at i = 1: we ask does 9 - nums[i] "2" exists? since it does exist, we return the indices of 2 and 7
+
+- but how do we return the indices without iterating over the array again?
+  we could use a big empty array that stretches from 0 to the biggest value of the array - the smallest value
+  that would make it so our smallest value index is 0 and biggest is max-min
+**that works, only 2 problem is this question's range of numbers and the inclusion of negative numbers
+  
+  numbers in this question stretch from -10^9 up to 10^9, so at worst case you would need an array that has an index of
+  2* 10^9 thats around 8 giga lol
+
+- solution is using a hashmap, a hashmap does exactly our above appraoch, but instead of mapping the number directly
+  into an index, it passes the number into a hash function first, its a function that produces a unique 32 bit number
+  for each input, then we take the % of that output to the size of out desired array so the math looks like this
+  y "thats the has_output" % the size of our desired array = new index
+  after that conversion there may be something called collison, where 2 numbers get the same index due to the nature of
+  the mod operation
+  there are 2 implemntaions done after the mod operation to fix that 
+  
+** https://www.youtube.com/watch?v=y11XNXi9dgs really good video to understand it :)
+
+
+
+
