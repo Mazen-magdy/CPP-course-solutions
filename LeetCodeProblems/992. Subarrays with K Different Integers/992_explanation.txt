@@ -1,0 +1,81 @@
+********************** 2 approaches that time limit but good to build up intution for the actual solution*************
+
+1) (time limit) we make every possible subarray that has k or less unique elements,
+  meaning if nums = 1,2,1,2,3 we make every subarray starting from 1 then 2 then 3 and so on
+  so it would be [1], [1,2], [1,2,1], [1,2,1,2], we keep track of how many unqiue elements we have with a hash map or 
+  a frequency array, every subarray that has unique elements  == k, increments the total count by 1.
+  once we reach a subarray that start from 1 that has more than k unique elements , we know that we can move onto making
+  new subarrays starting from 2 then and so on.
+  
+  we do this approach with 2 loops, first i = 0, second j = i, every time j increments, it the hashmap, does this element
+  already exist? if it doesnt it increments the count of uniques, if it does then we dont need to do anything, and j++
+  once reach j that makes unique > k, we break and i = 1 , and start the second loop again.
+
+
+2) (time limit) second approach is we notice that by defualt the only subarrays that meet the conditon of uniques elements = k, must have a
+   size thats equal to k or more, so make an array of hasmaps (or frequenecy arrays) thats size equal to the size of nums
+   each hasmap corrisponds to the subarray with k elements starting from index = i
+   so map[0] means the hashmap for the subarray that starts at index 0 and has k elements, map[1] is the same and so on
+   make another array with to keep track of the number of unique elements at each subarray aswell
+   so arr[0] represents the number of unique elements of the subarray that starts at index 0  and has k elements
+   
+   so now we have all subarrays with k elements, and how many unique elements in each subarray
+   we now count how any of these subarrays have exactly k unique elements and add that to the total.
+   no we begin increasing the size of each subarray so that its k+1
+   ex : if nums = 1,2,1,2,3 and k = 2
+   first we construct [1,2], [2,1], [1,2], [2,3]
+   then we wanna turn them into all sub arrays with 3 elements that be [1,2,1], [2,1,2]
+   that is done by standing at the index that the subarray starts with and adding the element k
+   so ex subarray [1,2] i = 0, we add i += 2 = 2 then subarray = [1,2,1]
+   and we access the hashmap for that subarray and we ask it? did we see this new element before? if we did we dont do
+   anything if we haven we increment the number of unique elements.
+   we do the same for subarray i = 1,
+   at the we add all total subarrays with unique elements = k to the total
+   and then we add k +1 to the index thats starting the subarray instead of just k and so on
+   until we cover the entire array.
+   we can do that in one loop by adding i += k + m at each round and (m) starts with 0 and increments each round
+ *** this approach works on all tests except only one.
+
+
+3) ((optimal)) main idea is instead of looking at the subarrays that start with index i, we instead cound all the subarrays
+   that END with index i instead.
+
+   this is done by keep 2 pointers to the far left and far right of the subarray, and then counting how many subarrays
+   can we get that start at index left and end at index right ( doesnt have to include left pointer element, but it cant include elements that are to its left
+    meaning left only dectates the boundary of the elements you can pickup not that it has to be in all subarrays that end at right)
+    look at below example for better understanding
+
+   ex: 1,2,1,2,3 : say left (L) = 0, right(r) = 3
+   we can get how many subarrays we can make straight away using the formula r-l + 1 = 4
+   so can make 4 subarrays that END with r = 3, these are [1,2,1,2], [2,1,2], [1,2], [2] (this is what it means)
+
+  main  idea : get everysubarray that has k or less uniques, get everysubarray that has k-1 or less subarrays
+   return the first - the latter and you get the difference between them
+   that is ( the difference between number of elements that has k or less  unique elements and k-1  or less unique elements is the number of
+   elements with k  unqiues)
+
+  we start with left at 0 and keep incrementing r with each round:
+  
+  ex: 1,2,1,2,3 k=2( gded w creative gdn)
+  i = 0, left  = 0 , r = 0 (r alawys = to i), we ask did we see element nums[r] before? 
+  if yes then its hashvalue ++ meaning ( map[nums[r]]++) else { map[nums[r]] = 1] , and the number of uniques ++} 
+  then at the end we ask is the number of unqiues less or equal to k
+  if yes and it is yes at i = 0, total += r - left + 1
+  we do the same at i = 1, 2, 3 
+  once we reach r = 4, and ask if we ever seen nums[r] before which is 3, uniques become 3
+  so when we ask the question is unique < = k?
+  it gives false
+  now we need to move left until we are at unique == k again
+  to do that at at every map [nums[l]] we simply decrement this value ( this value saves how many times we seen this element 
+  in the hash) and move left++ ( move it closer to r) once we see that map[nums[l]] == 0 , we decrement uniques once
+  meaning we no longer have that element in our subarray, and then check if uniques is still > k if yes continue if no
+  then left has reached its proper place
+
+
+** my code has this same idea but with better structure to redue the amound of if statements
+  
+
+
+
+
+
