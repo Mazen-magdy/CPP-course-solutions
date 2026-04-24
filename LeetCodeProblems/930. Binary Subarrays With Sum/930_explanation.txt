@@ -1,0 +1,33 @@
+-intution
+ since we only care about the number of subarrays thats sum = target, not actually extracting those subarrays, we can
+ just get the count of all subarrays thats sum <= target , and the count of all subarrays thats count <= target - 1
+ and count1 - count2 = number of subarrays that sum = target.
+*keyidea is that we are getting the number of subarrays thats sum equal to or less than target, which is much easier than
+ trying to get the subarrays thats sum exactly equals target.
+
+
+
+-how can do
+ basically we keep track of a window with 2 indeces, one to the left of the window and the other is to the right.
+ at each step, as long as the sum inside of the widow is not bigger than target: we increment the number of valid sub
+ arrays ( sub arrays thats sum <= target ) by right - left + 1, this basically gets us how many subarrays we can make that
+ ENDs at right, notice that we are saying ENDING at right
+ ex : nums = [1,0,1,0,1], goal = 2, we are looking for every subarray that has a sum of 2 or less
+ starting with r = 0, l =0, sum of that window = 1 ( sum += nums[r] which is one), since this is less or equal to 2
+ valid_arrs += r - l + 1: valid_arrs =1, meaning ( at this window we have 1 valid subarray thats sum less or equal to target)
+ next; l =0, r= 1, sum = 1 still, so we can increment valid_arrs as well: r - l +1 (valied_arrs = 1 + 2  ) = 3
+ at r = 2, sum = 2, thats an error because we have to make sum always less or equal to target, so enter while loop
+ and as long as sum > target we keep removing the current l from sum then moving sum to the right:
+ sum -= nums[l] , l++, and we keep doing that as long as sum>target and l doesnt go out of range.
+ once that loop ends, we increment valid_arrs as we did before ( since the array is binary) it is guarented that
+ if at some point sum was bigger than target, after moving l an amount , the sum would be equal to target when it
+ gets out of the loop since its discrete steps only.
+ 
+ what if target = 0 and nums = 1 1 1 1 1 1 1 1
+ we go into arr, l =0 , r=0, sum = 1, we go into loop: we keep removing sum[l] and incrementing l, but sum then starts
+ reaching negative values, and gets further right than the right variable itself
+ we solve this by simply asking, if left > right after we get out of the while loop?
+ then just continue and dont increment valid_arrs, this ensures that we only do increment when right is finally in front 
+ of left and by then the sum would have been turned positive again.
+
+
