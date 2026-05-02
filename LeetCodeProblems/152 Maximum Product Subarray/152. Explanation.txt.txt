@@ -1,0 +1,57 @@
+-------O[n], one loop , 2 loops in a row at worst scenareo if theres  only one neg ---------
+
+
+suppose we have the following examples:
+
+a) 2, 5, 7, 8
+b) -2, 5, 7, 8, -4
+c) 2, -2, 5, 7, 8, -4 ,-10
+d) -1, 2, 3, 4, 5, 6
+
+
+
+a: we can just go thorough then array with a var called current, multiply current
+   with num[i] and then at the end of each iteration we update the max count based    on max_count = max ( max_count, curr)
+
+b: is the same since theres 2 negatives, we notice this pattern is the same for any   even number of negatives
+
+c: now we notice that this is the same example as b upuntil we reach the last eleme   element, by then, it is negative again, 
+   
+   Now something to note, since, we reached a negative number again, its guranted t   that we have an odd number of negative, not only that that number is > 1 
+   so its either 3, 5 , 7 ... negatives, why > 1 is important? we will know later
+
+   given that, we are sure that the biggest product subarray must be one that has
+   an even number of negatives , AND also cover the biggest number of elements   
+   in general.
+
+   given the above that subarray will always be starting from the start of the arry   up until the element     that turned it negative so from -2 up to -4 only or , the elemennts starting from the element right after   the first negative upntil the last element we reached so from 5-> -10, why so? because the subarray has 
+   to be continious and ALSO with an even number of negatives, when we reach   a neg number after we have      been positive we know for sure we have an odd number of negatives
+
+
+   so simply when we become negative after we been postive 
+   max_count is max ( curr/ (the product of all elemenents up until fisrt negative), max_count)
+                  ----- ' curr above is the product after we multi'ed -10 with it, so in order to get the                     new subarray from 5 to -10 we have to divide by first neg and all elements before it.
+   so in order to do we need a variable that keeps track of the product before the first negative we meet
+   then it stops counting.
+
+   we also have to know when we meet out first negative number
+
+   one problem with this appraoch is that it cant solve when theres only one negative
+   since we keep on mutliplying on current and never rest its value
+
+d: with this apprach current will keep on increasing in the negative direction and never be positive 
+   this is the worst case scenareo inoder to solve this we keep a flag called onlyOne that tells us if there   exist only one negative, if thats the case, we loop through the array and only keep track of positve products.
+
+
+zero:  if theres a zero its really simple, its simply means that this is wall between 2 subarrays, so reset all  your flags, beforeNeg and Neg variables and keep the algoritihim as its.
+
+
+code vars:
+neg is the fist neg we meet
+beforeNeg is the product upuntil the first neg we meet.
+lol : just a dumb flag to not have the code remove onlyOne right after its been set to 1 when we first meet Neg
+
+onlyOne: flag to tell us if theres only one negative number, its 0 if we meet a new negative after Neg.
+
+
+
