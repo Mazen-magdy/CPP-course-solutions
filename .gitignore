@@ -1,0 +1,11 @@
+# Ignore executables
+*.exe
+*.out
+*.app
+
+# Ignore visual Studio Code folders
+.vscode/
+
+# Ignore build artifacts and object files
+*.o
+*.obj
